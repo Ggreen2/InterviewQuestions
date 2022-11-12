@@ -5,10 +5,10 @@
 
 General Information about this Test
 -----------------------------------------
-Assume you are calculating general payroll information for a 
+Assume you are calculating general payroll information for a
 construction company.  This company has employees that could do various
-jobs/tasks every day. An employee might start his/her day as a Painter but transition to 
-General Labor after lunch.  
+jobs/tasks every day. An employee might start his/her day as a Painter but transition to
+General Labor after lunch.
 
 You will calculate rates/wages based on the number of hours worked.  Example:
   - 0 to 40 hours is regular time
@@ -22,8 +22,8 @@ Job Information
 Each job pays an hourly wage as well as a benefit hourly wage.
 
 Example Explanation:
-If an employee worked 10 hours at the 'Hospital - Painter' job, 
-then they should recieve $312.50 in wages and an additional 
+If an employee worked 10 hours at the 'Hospital - Painter' job,
+then they should recieve $312.50 in wages and an additional
 $10 that would go towards benefits (ie: health insurance, etc).
 
 Hospital - Painter
@@ -43,9 +43,9 @@ Shop - Laborer
 * OT and DT do not affect the Benefits rate but should be calculated for every hour worked
 
 * Example Calculation for Regular/OT/DT/Benefits: *
-The construction company sends an employee out to a job site to do some painting (Hospital – Painter).  
-They work four 10 hour days to complete the job on time. On the last day of the week they have that same 
-employee clean up the workshop area (Shop – Laborer), which takes them 8 hours.  
+The construction company sends an employee out to a job site to do some painting (Hospital – Painter).
+They work four 10 hour days to complete the job on time. On the last day of the week they have that same
+employee clean up the workshop area (Shop – Laborer), which takes them 8 hours.
 
 Example Regular/Overtime calculation for the above scenerio:
 +--------------------+-----------+--------------+-------------+-----------+
@@ -74,7 +74,7 @@ Example Benefit Rate calculation for the above scenerio:
 Test Details
 -----------------------------------------
 Using the provided JSON data below, process the data to
-determine the amount paid to each employee.  We would like 
+determine the amount paid to each employee.  We would like
 to see the following data in your output for each employee:
 -> Regular Hours (cannot exceed 40 hours)
 -> Overtime Hours (hours that exceeded 40)
@@ -117,7 +117,7 @@ to see the following data in your output for each employee:
     prefer to solve the problem.
 
     Feel free to reformat the meta data as needed.
-    
+
     Your output can be in any format you feel would be consumable
     (ie: array of objects or a large object), the only requirement is the that
     the keys listed above are present.
