@@ -1,15 +1,14 @@
 
 function payrollCalculator(){
-  //payrollData.jobMeta.forEach(jobRates);
-  payrollData.employeeData.forEach(employeeTimeCard);
-  //console.log(payrollData.jobMeta);
+  payrollData.employeeData.forEach((employee, i) => {
+    var employeeFinal = employeeTimeCard(employee, i)
+  });
   //testJobRates();//TODO make assertEquals to values for faster testing
-
 }
 //Main Functions
-function jobRates(job, hours, totalHours){//takes in the job and the hours and returns an obj holding the wage pay and the benefit pay
-  var hourSum = hours + totalHours;
-  var wageObj = {wageRate: 0 ,benefitRate: 0, regularHours: 0,overtimeHours: 0, doubletimeHours: 0};
+const jobRates = (job, hours, totalHours) =>{//takes in the job and the hours and returns an obj holding the wage pay and the benefit pay
+  const hourSum = hours + totalHours;
+  let wageObj = {wageRate: 0 ,benefitRate: 0, regularHours: 0,overtimeHours: 0, doubletimeHours: 0};
   switch(job){
     case 'Hospital - Painter':
     wageObj.benefitRate = payrollData.jobMeta[0].benefitsRate * hours;
@@ -103,10 +102,10 @@ function jobRates(job, hours, totalHours){//takes in the job and the hours and r
 
 }
 function employeeTimeCard(employee, index){
-  var employeeTotals = {employee: employee.employee, regular: 0, overtime: 0, doubletime: 0, wageTotal: 0, benefitTotal: 0}
+  let employeeTotals = {employee: employee.employee, regular: 0, overtime: 0, doubletime: 0, wageTotal: 0, benefitTotal: 0}
   employee.timePunch.forEach((timePunch, i) => {
-    var timePunchObj = {job: timePunch.job, hours: punchHours(timePunch.start, timePunch.end), totalHours: employeeTotals.regular + employeeTotals.overtime}
-    var tempRates = jobRates(timePunchObj.job, timePunchObj.hours,timePunchObj.totalHours);
+    let timePunchObj = {job: timePunch.job, hours: punchHours(timePunch.start, timePunch.end), totalHours: employeeTotals.regular + employeeTotals.overtime}
+    let tempRates = jobRates(timePunchObj.job, timePunchObj.hours,timePunchObj.totalHours);
 
     employeeTotals.wageTotal += tempRates.wageRate;
     employeeTotals.benefitTotal += tempRates.benefitRate
@@ -120,7 +119,7 @@ function employeeTimeCard(employee, index){
 
 }
 //Helper Functions
-function roundValues(completedEmployee){
+const roundValues = (completedEmployee) =>{
   completedEmployee.wageTotal = Math.round(completedEmployee.wageTotal*10000) / 10000;
   completedEmployee.benefitTotal = Math.round(completedEmployee.benefitTotal*10000) / 10000;
   completedEmployee.regular = Math.round(completedEmployee.regular*10000)/ 10000;
@@ -128,14 +127,11 @@ function roundValues(completedEmployee){
   completedEmployee.doubletime = Math.round(completedEmployee.doubletime*10000)/ 10000;
   return completedEmployee;
 }
-function punchHours(start, end){
+const punchHours = (start, end) =>{
   var hours = Math.abs(Date.parse(end) - Date.parse(start))/ 36e5
   return hours;
 }
-function tableCreate(totalsTable){
-//TODO have it create table of the data collected
-}
-function testJobRates(){
+const testJobRates=()=>{
   console.log("H-P")
   console.log(jobRates("Hospital - Painter", 5, 48));//312.5
   console.log(jobRates("Hospital - Painter", 5, 45));//265.625
