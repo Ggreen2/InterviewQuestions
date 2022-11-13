@@ -1,12 +1,12 @@
 
 function payrollCalculator(){
-  payrollData.jobMeta.forEach(jobRates);
+  //payrollData.jobMeta.forEach(jobRates);
   payrollData.employeeData.forEach(employeeTimeCard);
   //console.log(payrollData.jobMeta);
-  //testJobRates();
+  //testJobRates();//TODO make assertEquals to values for faster testing
 
 }
-
+//Main Functions
 function jobRates(job, hours, totalHours){//takes in the job and the hours and returns an obj holding the wage pay and the benefit pay
   var hourSum = hours + totalHours;
   var wageObj = {wageRate: 0 ,benefitRate: 0, regularHours: 0,overtimeHours: 0, doubletimeHours: 0};
@@ -119,6 +119,7 @@ function employeeTimeCard(employee, index){
   return roundValues(employeeTotals);
 
 }
+//Helper Functions
 function roundValues(completedEmployee){
   completedEmployee.wageTotal = Math.round(completedEmployee.wageTotal*10000) / 10000;
   completedEmployee.benefitTotal = Math.round(completedEmployee.benefitTotal*10000) / 10000;
@@ -129,29 +130,29 @@ function roundValues(completedEmployee){
 }
 function punchHours(start, end){
   var hours = Math.abs(Date.parse(end) - Date.parse(start))/ 36e5
-  return hours
+  return hours;
 }
 function tableCreate(totalsTable){
 //TODO have it create table of the data collected
 }
 function testJobRates(){
   console.log("H-P")
-  console.log(jobRates("Hospital - Painter", 5, 48));
-  console.log(jobRates("Hospital - Painter", 5, 45));
-  console.log(jobRates("Hospital - Painter", 5, 38));
-  console.log(jobRates("Hospital - Painter", 5, 30));
+  console.log(jobRates("Hospital - Painter", 5, 48));//312.5
+  console.log(jobRates("Hospital - Painter", 5, 45));//265.625
+  console.log(jobRates("Hospital - Painter", 5, 38));//203.125
+  console.log(jobRates("Hospital - Painter", 5, 30));//156.25
 
   console.log("H-L")
-  console.log(jobRates("Hospital - Laborer", 5, 48));
-  console.log(jobRates("Hospital - Laborer", 5, 45));
-  console.log(jobRates("Hospital - Laborer", 5, 38));
-  console.log(jobRates("Hospital - Laborer", 5, 30));
+  console.log(jobRates("Hospital - Laborer", 5, 48));//200
+  console.log(jobRates("Hospital - Laborer", 5, 45));//170
+  console.log(jobRates("Hospital - Laborer", 5, 38));//130
+  console.log(jobRates("Hospital - Laborer", 5, 30));//100
 
     console.log("S-L")
-  console.log(jobRates("Shop - Laborer", 5, 48));
-  console.log(jobRates("Shop - Laborer", 5, 45));
-  console.log(jobRates("Shop - Laborer", 5, 38));
-  console.log(jobRates("Shop - Laborer", 5, 30));
+  console.log(jobRates("Shop - Laborer", 5, 48));//162.5
+  console.log(jobRates("Shop - Laborer", 5, 45));//138.125
+  console.log(jobRates("Shop - Laborer", 5, 38));//105.625
+  console.log(jobRates("Shop - Laborer", 5, 30));//81.25
 }
 //JSON Data
 let payrollData =
